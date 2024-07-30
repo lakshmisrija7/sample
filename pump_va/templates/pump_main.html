@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>spectrum_analysis</title>
+    <link rel="shortcut icon" href="#">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <link rel="stylesheet" href="../static/main.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="../static/main.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/highcharts-more.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+    
+
+</head>
+<body>
+   <div class="screen_container">
+        <div class="navbar_container">
+            <div class="buttons_container">
+            <button class="neon-btns" id="normal">Normal</button>
+            <button class="neon-btns" id="unbalance">Unbalance</button>
+            <button class="neon-btns" id="misalignment">Misalignment</button>
+            <!-- <button class="neon-btns" id="eccentricity">Eccentricity</button> -->
+            <button class="neon-btns" id="bent_shaft">Bent Shaft Fault</button>
+            <button class="neon-btns" id="outerrace">Outerrace Fault</button>
+            <button class="neon-btns" id="innerrace">Innerrace Fault</button>
+            <button class="neon-btns" id="cage">Cage Fault</button>
+            <!-- <button class="neon-btns" id="rolling_element">Rolling Element Fault</button> -->
+            <button class="neon-btns" id="eccentricity">Eccentricity</button>
+            <button class="neon-btns" id="cavitation">Cavitation Fault</button>
+            <button class="neon-btns" id="broken_impeller">Broken Impeller Fault</button>
+            <button class="neon-btns" id="starvation">Starvation Fault</button>
+            </div>
+        </div>
+        <div class="graph_container">
+            <div class="background-div"></div>
+            <div  class="top-graphs">
+                <p class="graph_labels">X-Axis Vibration Time Series</p>
+                <div class="vib_x_graph" id="vib_data_x"></div>
+                <!-- <p class="graph_blabels">time</p> -->
+                <p class="graph_labels">Y-Axis Vibration Time Series</p>
+                <div class="vib_y_graph" id="vib_data_y"></div>
+                <!-- <p class="graph_blabels">time</p> -->
+                <p class="graph_labels">Z-Axis Vibration Time Series</p>
+                <div class="vib_z_graph" id="vib_data_z"></div>
+                <!-- <p class="graph_blabels">time</p> -->
+            </div>
+            <!-- <br></br> -->
+            <div class="row bottom_graphs_container">
+                <div class="bottom_1">
+                    <p class="bottom_graph_labels">X-Axis Frequency Spectrum</p>
+                    <div class="fft_x_graph" id="freq_x"></div>
+                </div>
+               
+                <div class="bottom_1">
+                    <p class="bottom_graph_labels">Y-Axis Frequency Spectrum</p>
+                    <div class="fft_y_graph" id="freq_y"></div>
+                </div>
+        
+                <div class="bottom_1">
+                    <p class="bottom_graph_labels">Z-Axis Frequency Spectrum</p>
+                    <div class="fft_z_graph" id="freq_z"></div>
+                              
+                </div>
+               
+            </div>
+            
+        </div>
+    </div>
+     
+    <!-- <script src="../static/main_d3.js"></script> -->
+    <script src="../static/main.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script>
+        function plot_graphs() {
+        $.get('/vibrationData').done(function(data) {
+            // var data = JSON.parse(result);
+            d3.selectAll("svg").remove();
+            var x_data = data.x_data     
+            var y_data = data.y_data   
+            var z_data = data.z_data
+            var x_timeseries_data = data.time_x_data     
+            var y_timeseries_data = data.time_y_data   
+            var z_timeseries_data = data.time_z_data
+            initAIPlotJs2("vib_data_x", x_timeseries_data,"timeseries");
+            initAIPlotJs2("vib_data_y", y_timeseries_data,"timeseries");
+            initAIPlotJs2("vib_data_z", z_timeseries_data);
+            initAIPlotJs("freq_x", x_data,"linear");
+            initAIPlotJs("freq_y", y_data,"linear");
+            initAIPlotJs("freq_z", z_data,"linear");
+            
+            setTimeout(plot_graphs, 10000);
+        });
+    }
+
+    $(document).ready(function() {
+        plot_graphs();
+    });
+
+    </script>
+</body>
+</html>
+
+
+
+
+ 

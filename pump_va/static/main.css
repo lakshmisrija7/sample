@@ -1,0 +1,148 @@
+.screen_container{
+    height: 100%;
+    width:100%;
+}
+
+.graph_labels{
+    text-align: center;
+    font-size: 1.1rem;
+    font-family: "Poppins";
+    font-weight: 600;
+}
+.graph_blabels{
+    text-align: center;
+    font-size: 1.1rem;
+    font-family: "Poppins";
+    /* font-weight: 600; */
+}
+
+.bottom_graph_labels{
+    text-align: center;
+    font-size: 1.1rem;
+    font-family: "Poppins";
+    font-weight: 600;
+    padding-top: 2rem;
+
+}
+.bottom_1{
+    width:500px;
+    height:400px;
+}
+.buttons_container {
+    margin-top: 20px;
+    display: flex;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
+    justify-content: space-between;
+    /* flex-direction: row; */
+    gap: 20px; 
+}
+ .top_graphs_container{
+    height : 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* width: 100%; */
+    /* flex-wrap: nowrap; */
+} 
+.bottom_graphs_container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    /* flex-wrap: nowrap; */
+}
+.neon-btns {
+    width: 190px;
+    height: 2rem;
+    font-size: 1.1rem;
+    font-family: "Poppins";
+    font-weight: 600;
+    display: inline-block;
+    cursor: pointer;
+    /* border: #14f7ff 0.125em solid; */
+    border: 0;
+    /* padding: 0.25em 1em; */
+    /* padding: 40px; */
+    border-radius: 0.25em;
+    text-shadow:
+        0 0 .20em rgba(255, 255, 255, 0.121),
+        0 0 .30em rgba(211, 100, 255, 0.185);
+    box-shadow: 0px 0px 15px rgba(80, 130, 230, 0.21);
+    transition: 0.5s;
+}
+
+.neon-btns:hover {
+    background-color: rgba(211, 100, 255, 0.058);
+    box-shadow: 0px 0px 25px rgba(80, 130, 230, 0.451);
+}
+.navbar_container{
+    /* flex:1; */
+    width:15%;
+    /* height:100px; */
+    float:left;
+    position: fixed;
+    top:0;
+    left:0;
+}
+.graph_container{
+    /* flex:1; */
+    display: flex;
+    /* align-items: center; */
+    flex-direction: column;
+    margin-left:15%;
+    position: relative;
+    z-index: 1.1;
+    /* height:100px; */
+    
+}
+
+.top-graphs, .row{
+    /* display: none; */
+    z-index: 2;
+}
+.background-div{
+    position:absolute;
+    height:1500px;
+    /* background-color:red; */
+    z-index:1.1;
+    width: 100%;
+}
+.vib_x_graph{
+    /* width:33%; */
+    height:30%;
+    /* float:left; */
+    
+}
+.vib_y_graph{
+    /* width:33%; */
+    height:30%;
+  
+    /* float:left; */
+}
+.vib_z_graph{
+    /* width:33%; */
+    height:30%;
+   
+}
+
+.fft_x_graph{
+    width:400px;
+    height:300px;
+    /* float:left; */
+}
+.fft_y_graph{
+    width:400px;
+    height:300px;
+    /* margin-left:25%; */
+    /* float:left; */
+}
+.fft_z_graph{
+    width:400px;
+    height:300px;
+    /* float:left; */
+     /* margin-left:50%; */
+}
+
